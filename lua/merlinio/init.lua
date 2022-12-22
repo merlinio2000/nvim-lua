@@ -1,3 +1,4 @@
+require('merlinio.packer')
 require('merlinio.remap')
 require('merlinio.packer')
 require('merlinio.theme')

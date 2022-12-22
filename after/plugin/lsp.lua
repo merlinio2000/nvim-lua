@@ -1,5 +1,7 @@
 local lsp = require("lsp-zero")
 
+vim.lsp.set_log_level('debug')
+
 lsp.preset("recommended")
 
 lsp.ensure_installed({
@@ -51,6 +53,10 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "==", vim.lsp.buf.format)
   opts['desc'] = 'Goto Definition'
   vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+  opts['desc'] = 'Goto Next Diagnostic'
+  vim.keymap.set("n", "gnd", vim.diagnostic.goto_next, opts)
+  opts['desc'] = 'Goto Previous Diagnostic'
+  vim.keymap.set("n", "gnp", vim.diagnostic.goto_prev, opts)
   opts['desc'] = 'Hover info'
   vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
   opts['desc'] = 'View Workspace Symbol'
@@ -65,18 +71,42 @@ lsp.on_attach(function(client, bufnr)
   vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
   opts['desc'] = 'Signature Help'
   vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
-  opts['desc'] = 'Goto Next Diagnostic'
-  vim.keymap.set("n", "gnd", vim.diagnostic.goto_next, opts)
-  opts['desc'] = 'Goto Previous Diagnostic'
-  vim.keymap.set("n", "gnp", vim.diagnostic.goto_prev, opts)
-
 
   -- vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, vim.lsp.buf.document_highlight)
   -- vim.api.nvim_create_autocmd("CursorMoved" , vim.lsp.buf.clear_references)
 end)
 
-lsp.setup()
-
 vim.diagnostic.config({
     virtual_text = true,
 })
+
+
+local lspconfig = require('lspconfig')
+-- local capabilities = vim.lsp.protocol.make_client_capabilities()
+-- capabilities.textDocument.completion.completionItem.snippetSupport = true
+
+-- lspconfig.emmet_ls.setup({
+--     -- on_attach = on_attach,
+--     capabilities = capabilities,
+--     filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
+--     init_options = {
+--       html = {
+--         options = {
+--           -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+--           ["bem.enabled"] = true,
+--         },
+--       },
+--       scss = {
+--         options = {
+--           -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
+--           ["bem.enabled"] = true,
+--         },
+--       },
+--     }
+-- })
+--
+--
+lspconfig.tailwindcss.setup({})
+
+
+lsp.setup()

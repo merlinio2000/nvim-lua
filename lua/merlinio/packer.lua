@@ -43,6 +43,14 @@ return require('packer').startup(function(use)
         end
     }
 
+    use {
+        'nvim-tree/nvim-tree.lua',
+        requires = {
+        'nvim-tree/nvim-web-devicons', -- optional, for file icons
+        },
+    }
+    
+    use {'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons'}
 
     use {
         'VonHeikemen/lsp-zero.nvim',
