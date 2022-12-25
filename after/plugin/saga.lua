@@ -12,8 +12,6 @@ saga.init_lsp_saga({
     move_in_saga = { prev = '<C-p>', next = '<C-n>' },
     -- Error, Warn, Info, Hint
     -- use emoji like
-    -- { "🙀", "😿", "😾", "😺" }
-    -- or
     -- { "😡", "😥", "😤", "😐" }
     -- and diagnostic_header can be a function type
     -- must return a string and when diagnostic_header
@@ -115,7 +113,7 @@ saga.init_lsp_saga({
 keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- Code action
-keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", { silent = true })
+keymap({ "n", "v" }, "sa", "<cmd>Lspsaga code_action<CR>", { silent = true })
 
 -- Rename
 keymap("n", "<F2>", "<cmd>Lspsaga rename<CR>", { silent = true })
@@ -145,7 +143,7 @@ keymap("n", "]e", function()
 end, { silent = true, desc = 'Lspsaga go to previous error' })
 
 -- Outline
-keymap("n", "<leader>o", "<cmd>Lspsaga outline<CR>", { silent = true })
+keymap("n", "so", "<cmd>Lspsaga outline<CR>", { silent = true })
 
 -- Hover Doc
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
@@ -154,6 +152,6 @@ keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 -- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
 -- if you want to pass some cli command into a terminal you can do it like this
 -- open lazygit in lspsaga float terminal
-keymap("n", "<A-g>", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
+keymap("n", "stg", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
 -- close floaterm
-keymap("t", "<A-d>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
+keymap("t", "<ESC>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })

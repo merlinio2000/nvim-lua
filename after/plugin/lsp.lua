@@ -1,6 +1,6 @@
 local lsp = require("lsp-zero")
 
-vim.lsp.set_log_level('debug')
+-- vim.lsp.set_log_level('debug')
 
 lsp.preset("recommended")
 
@@ -34,10 +34,10 @@ lsp.setup_nvim_cmp({
 lsp.set_preferences({
     suggest_lsp_servers = true,
     sign_icons = {
-        -- error = 'E',
-        -- warn = 'W',
-        -- hint = 'H',
-        -- info = 'I'
+        error = 'E',
+        warn = 'W',
+        hint = 'H',
+        info = 'I'
     }
 })
 
@@ -108,9 +108,9 @@ lsp.setup()
 
 vim.diagnostic.config({
     virtual_text = true,
---     signs = true,
---     update_in_insert = false,
---     underline = true,
---     severity_sort = true,
---     float = true,
+    signs = true,
+    update_in_insert = false,
+    underline = true,
+    severity_sort = true,
+    float = true,
 })
