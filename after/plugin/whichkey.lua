@@ -6,6 +6,7 @@ wk.register({
     ["<leader>"] = {
         f = { name = "+find" },
         g = { name = "+git" },
+        h = { name = '+harpoon' },
         t = { name = '+file tree' },
         v = { name = '+view',
             w = { name = '+workspace' },
@@ -15,7 +16,6 @@ wk.register({
     },
     c = { name = '+comment [LSP]' },
     g = { name = '+goto' },
-    h = { name = '+harpoon' },
     s = { name = '+saga [LSP]',
         t = { name = '+terminal' },
     },
