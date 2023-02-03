@@ -2,6 +2,11 @@ local lsp = require("lsp-zero")
 
 -- vim.lsp.set_log_level('debug')
 
+require("mason-null-ls").setup({
+    ensure_installed = { "prettierd" }
+})
+
+
 lsp.preset("recommended")
 
 lsp.ensure_installed({
@@ -76,33 +81,25 @@ lsp.on_attach(function(client, bufnr)
     -- vim.api.nvim_create_autocmd("CursorMoved" , vim.lsp.buf.clear_references)
 end)
 
-local lspconfig = require('lspconfig')
--- local capabilities = vim.lsp.protocol.make_client_capabilities()
--- capabilities.textDocument.completion.completionItem.snippetSupport = true
-
--- lspconfig.emmet_ls.setup({
---     -- on_attach = on_attach,
---     capabilities = capabilities,
---     filetypes = { 'html', 'typescriptreact', 'javascriptreact', 'css', 'sass', 'scss', 'less' },
---     init_options = {
---       html = {
---         options = {
---           -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
---           ["bem.enabled"] = true,
---         },
---       },
---       scss = {
---         options = {
---           -- For possible options, see: https://github.com/emmetio/emmet/blob/master/src/config.ts#L79-L267
---           ["bem.enabled"] = true,
---         },
---       },
---     }
--- })
---
---
 
 lsp.setup()
+
+
+local null_ls = require('null-ls')
+local null_opts = lsp.build_options('null-ls', {})
+
+null_ls.setup({
+  -- on_attach = function(client, bufnr)
+  --   null_opts.on_attach(client, bufnr)
+  --   ---
+  --   -- you can add other stuff here....
+  --   ---
+  -- end,
+  -- sources = {
+  --   null_ls.builtins.formatting.prettier,
+  --   null_ls.builtins.diagnostics.eslint,
+  -- }
+})
 
 
 

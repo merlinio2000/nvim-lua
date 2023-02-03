@@ -21,8 +21,7 @@ return require('packer').startup(function(use)
     }
 
     use {
-        'nvim-telescope/telescope.nvim', tag = '0.1.0',
-        -- or                            , branch = '0.1.x',
+        'nvim-telescope/telescope.nvim', branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
@@ -53,6 +52,7 @@ return require('packer').startup(function(use)
 
     use {
         'VonHeikemen/lsp-zero.nvim',
+        branch = 'v1.x',
         requires = {
             -- LSP Support
             { 'neovim/nvim-lspconfig' },
@@ -70,8 +70,14 @@ return require('packer').startup(function(use)
             -- Snippets
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
+
+	        -- prettier format
+		    {'jose-elias-alvarez/null-ls.nvim'},
+		    {'MunifTanjim/prettier.nvim'},
         }
     }
+
+    use { "jay-babu/mason-null-ls.nvim" }
 
     use {
         "folke/trouble.nvim",
