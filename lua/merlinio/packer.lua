@@ -10,7 +10,8 @@ return require('packer').startup(function(use)
 
 
     -- theme
-    use { "ellisonleao/gruvbox.nvim" }
+    -- use { "ellisonleao/gruvbox.nvim" }
+    use "olimorris/onedarkpro.nvim"
 
     use { 'kyazdani42/nvim-web-devicons' }
 
