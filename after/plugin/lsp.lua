@@ -70,8 +70,8 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "gnd", vim.diagnostic.goto_next, opts)
     opts['desc'] = 'Goto Previous Diagnostic'
     vim.keymap.set("n", "gnp", vim.diagnostic.goto_prev, opts)
-    -- opts['desc'] = 'Hover info'
-    -- vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+    opts['desc'] = 'Hover info'
+    vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
     opts['desc'] = 'View Workspace Symbol'
     vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
     opts['desc'] = 'View Diagnostics'
@@ -88,7 +88,6 @@ lsp.on_attach(function(client, bufnr)
     -- vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, vim.lsp.buf.document_highlight)
     -- vim.api.nvim_create_autocmd("CursorMoved" , vim.lsp.buf.clear_references)
 end)
-
 
 lsp.setup()
 
