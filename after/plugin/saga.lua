@@ -146,7 +146,7 @@ end, { silent = true, desc = 'Lspsaga go to previous error' })
 keymap("n", "so", "<cmd>Lspsaga outline<CR>", { silent = true })
 
 -- Hover Doc
-keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
+keymap("n", "sk", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 
 -- -- Float terminal
 -- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
