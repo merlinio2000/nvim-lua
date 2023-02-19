@@ -2,14 +2,23 @@ local lsp = require("lsp-zero")
 
 -- vim.lsp.set_log_level('debug')
 
+require("mason-null-ls").setup({
+    ensure_installed = { "prettierd" }
+})
+
+
 lsp.preset("recommended")
 
 lsp.ensure_installed({
     'tsserver',
     'eslint',
-    'sumneko_lua',
+    'lua_ls',
     'rust_analyzer',
 })
+
+-- configure lua language server for neovim
+-- see :help lsp-zero.nvim_workspace()
+lsp.nvim_workspace()
 
 local cmp = require('cmp')
 local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -48,6 +57,10 @@ lsp.on_attach(function(client, bufnr)
     --     vim.cmd.LspStop('eslint')
     --     return
     -- end
+    if client.name == "eslint" or client.name == "volar" or client.name == "tsserver" then
+        client.server_capabilities.documentFormattingProvider = false
+        client.server_capabilities.documentFormattingRangeProvider = false
+    end
 
     opts['desc'] = 'Format Buffer'
     vim.keymap.set({ "n", 'v' }, "==", vim.lsp.buf.format)
@@ -77,6 +90,56 @@ lsp.on_attach(function(client, bufnr)
 end)
 
 lsp.setup()
+
+
+local null_ls = require('null-ls')
+local null_opts = lsp.build_options('null-ls', {})
+
+null_ls.setup({
+    on_attach = function(client, bufnr)
+        null_opts.on_attach(client, bufnr)
+        ---
+        -- you can add other stuff here....
+        ---
+    end,
+    sources = {
+        null_ls.builtins.formatting.prettier,
+        -- null_ls.builtins.diagnostics.eslint,
+    }
+})
+
+local prettier = require("prettier")
+
+prettier.setup({
+    bin = 'prettierd', -- or `'prettierd'` (v0.22+)
+    filetypes = {
+        "css",
+        "graphql",
+        "html",
+        "javascript",
+        "javascriptreact",
+        "json",
+        "less",
+        "markdown",
+        "scss",
+        "typescript",
+        "typescriptreact",
+        "yaml",
+    },
+    ["null-ls"] = {
+        condition = function()
+            return prettier.config_exists({
+                -- if `false`, skips checking `package.json` for `"prettier"` key
+                check_package_json = true,
+            })
+        end,
+        runtime_condition = function(params)
+            -- return false to skip running prettier
+            return true
+        end,
+        timeout = 5000,
+    }
+})
 
 
 

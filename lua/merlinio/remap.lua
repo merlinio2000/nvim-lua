@@ -7,6 +7,8 @@ vim.keymap.set('n', '+', '<C-w>>', {desc='Enlarge Buffer'})
 vim.keymap.set('n', '-', '<C-w><', {desc='Shrink Buffer'})
 vim.keymap.set('n', '>', '<C-w>l', {desc='Right Screen'})
 vim.keymap.set('n', '<', '<C-w>h', {desc='Left Screen'})
+vim.keymap.set('n', '<C-l>', '<C-w>l', {desc='Right Screen'})
+vim.keymap.set('n', '<C-h>', '<C-w>h', {desc='Left Screen'})
 vim.keymap.set('n', 'H', ':bprev<CR>', {desc='Previous Buffer'})
 vim.keymap.set('n', 'L', ':bnext<CR>', {desc='Next Buffer'})
 
