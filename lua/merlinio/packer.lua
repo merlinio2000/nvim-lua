@@ -75,7 +75,7 @@ return require('packer').startup(function(use)
 
 	        -- prettier format
 		    {'jose-elias-alvarez/null-ls.nvim'},
-		    {'MunifTanjim/prettier.nvim'},
+		    -- {'MunifTanjim/prettier.nvim'},
         }
     }
 
@@ -90,5 +90,7 @@ return require('packer').startup(function(use)
         "glepnir/lspsaga.nvim",
         branch = "main",
     })
+
+    use 'simrat39/rust-tools.nvim'
 
 end)

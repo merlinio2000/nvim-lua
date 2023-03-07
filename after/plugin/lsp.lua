@@ -27,6 +27,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-b>'] = cmp.mapping.scroll_docs( -4),
+    ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),
 })
@@ -63,7 +65,7 @@ lsp.on_attach(function(client, bufnr)
     end
 
     opts['desc'] = 'Format Buffer'
-    vim.keymap.set({ "n", 'v' }, "==", vim.lsp.buf.format)
+    vim.keymap.set({ "n", 'v' }, "==", vim.lsp.buf.format, opts)
     opts['desc'] = 'Goto Definition'
     vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
     opts['desc'] = 'Goto Next Diagnostic'
@@ -89,8 +91,31 @@ lsp.on_attach(function(client, bufnr)
     -- vim.api.nvim_create_autocmd("CursorMoved" , vim.lsp.buf.clear_references)
 end)
 
+
+lsp.configure('jsonls', {
+    settings = {
+        json = {
+            schemas = {
+                {
+                    fileMatch = { 'package.json' },
+                    url = 'https://json.schemastore.org/package.json',
+                },
+                {
+                    fileMatch = { 'tsconfig.json', 'tsconfig.*.json' },
+                    url = 'http://json.schemastore.org/tsconfig',
+                },
+            },
+        },
+    },
+})
+
 lsp.setup()
 
+local rust_lsp = lsp.build_options('rust_analyzer', {
+  single_file_support = false,
+})
+
+require('rust-tools').setup({server = rust_lsp})
 
 local null_ls = require('null-ls')
 local null_opts = lsp.build_options('null-ls', {})
@@ -103,47 +128,13 @@ null_ls.setup({
         ---
     end,
     sources = {
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettierd,
         -- null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.diagnostics.shellcheck,
         null_ls.builtins.code_actions.shellcheck,
         null_ls.builtins.formatting.shfmt,
     }
 })
-
-local prettier = require("prettier")
-
-prettier.setup({
-    bin = 'prettierd', -- or `'prettierd'` (v0.22+)
-    filetypes = {
-        "css",
-        "graphql",
-        "html",
-        "javascript",
-        "javascriptreact",
-        "json",
-        "less",
-        "markdown",
-        "scss",
-        "typescript",
-        "typescriptreact",
-        "yaml",
-    },
-    ["null-ls"] = {
-        condition = function()
-            return prettier.config_exists({
-                -- if `false`, skips checking `package.json` for `"prettier"` key
-                check_package_json = true,
-            })
-        end,
-        runtime_condition = function(params)
-            -- return false to skip running prettier
-            return true
-        end,
-        timeout = 5000,
-    }
-})
-
 
 
 vim.diagnostic.config({
