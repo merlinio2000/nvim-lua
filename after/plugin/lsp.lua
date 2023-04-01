@@ -27,16 +27,16 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
     ['<Up>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<Down>'] = cmp.mapping.select_next_item(cmp_select),
-    ['<C-b>'] = cmp.mapping.scroll_docs( -4),
+    ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),
 })
 
--- disable completion with tab
--- this helps with copilot setup
-cmp_mappings['<Tab>'] = nil
-cmp_mappings['<S-Tab>'] = nil
+-- -- disable completion with tab
+-- -- this helps with copilot setup
+-- cmp_mappings['<Tab>'] = nil
+-- cmp_mappings['<S-Tab>'] = nil
 
 lsp.setup_nvim_cmp({
     mapping = cmp_mappings
@@ -86,6 +86,8 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
     opts['desc'] = 'Signature Help'
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+    opts['desc'] = 'Completions'
+    vim.keymap.set("i", "<C-.>", vim.lsp.buf.completion, opts)
 
     -- vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, vim.lsp.buf.document_highlight)
     -- vim.api.nvim_create_autocmd("CursorMoved" , vim.lsp.buf.clear_references)
@@ -112,10 +114,10 @@ lsp.configure('jsonls', {
 lsp.setup()
 
 local rust_lsp = lsp.build_options('rust_analyzer', {
-  single_file_support = false,
+    single_file_support = false,
 })
 
-require('rust-tools').setup({server = rust_lsp})
+require('rust-tools').setup({ server = rust_lsp })
 
 local null_ls = require('null-ls')
 local null_opts = lsp.build_options('null-ls', {})
