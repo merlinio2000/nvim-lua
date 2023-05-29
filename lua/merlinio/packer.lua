@@ -25,7 +25,7 @@ return require('packer').startup(function(use)
         'nvim-telescope/telescope.nvim', branch = '0.1.x',
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
-    use {'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
     use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
     use('nvim-treesitter/playground')
@@ -73,9 +73,9 @@ return require('packer').startup(function(use)
             { 'L3MON4D3/LuaSnip' },
             { 'rafamadriz/friendly-snippets' },
 
-	        -- prettier format
-		    {'jose-elias-alvarez/null-ls.nvim'},
-		    -- {'MunifTanjim/prettier.nvim'},
+            -- prettier format
+            { 'jose-elias-alvarez/null-ls.nvim' },
+            -- {'MunifTanjim/prettier.nvim'},
         }
     }
 
@@ -93,4 +93,7 @@ return require('packer').startup(function(use)
 
     use 'simrat39/rust-tools.nvim'
 
+
+    -- latex
+    use 'lervag/vimtex'
 end)
