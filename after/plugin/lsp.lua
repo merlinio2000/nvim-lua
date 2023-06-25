@@ -1,3 +1,13 @@
+-- todo hack remove once fedora upgrades neovim
+local ok, wf = pcall(require, "vim.lsp._watchfiles")
+if ok then
+ -- disable lsp watcher. Too slow on linux
+ wf._watchfunc = function()
+   return function() end
+ end
+end
+
+
 local lsp = require("lsp-zero")
 
 -- vim.lsp.set_log_level('debug')
