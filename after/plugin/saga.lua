@@ -147,11 +147,3 @@ keymap("n", "so", "<cmd>Lspsaga outline<CR>", { silent = true })
 
 -- Hover Doc
 keymap("n", "sk", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
-
--- -- Float terminal
--- keymap("n", "<A-d>", "<cmd>Lspsaga open_floaterm<CR>", { silent = true })
--- if you want to pass some cli command into a terminal you can do it like this
--- open lazygit in lspsaga float terminal
-keymap("n", "stg", "<cmd>Lspsaga open_floaterm lazygit<CR>", { silent = true })
--- close floaterm
-keymap("t", "<ESC>", [[<C-\><C-n><cmd>Lspsaga close_floaterm<CR>]], { silent = true })
