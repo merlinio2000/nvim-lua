@@ -8,6 +8,8 @@ return require('packer').startup(function(use)
     use 'wbthomason/packer.nvim'
     use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
+    -- TODO: migr to lazy.nvim and use keys from git
+    use 'folke/flash.nvim'
 
     -- theme
     -- use { "ellisonleao/gruvbox.nvim" }
