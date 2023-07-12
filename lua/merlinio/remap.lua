@@ -43,10 +43,5 @@ vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 vim.keymap.set("n", "<leader>xf", "<cmd>!chmod +x %<CR>", { desc = 'Make File executable' })
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Find Files' })
-vim.keymap.set('n', '<leader>ft', builtin.live_grep, { desc = 'Find Text' })
-vim.keymap.set('n', '<leader>fg', builtin.git_files, { desc = 'Find Git Files' })
-vim.keymap.set('n', '<leader>fr', builtin.resume, { desc = 'Find Resume previous' })
 
 
