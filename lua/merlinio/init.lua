@@ -17,6 +17,6 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('merlinio.remap')
-require('merlinio.packer')
+require('merlinio.lazy')
 require('merlinio.theme')
 require('merlinio.set')
