@@ -2,7 +2,7 @@ local null_ls = require('null-ls')
 
 null_ls.setup({
     on_attach = function(client, bufnr)
-        require('on_attach')(client, bufnr)
+        require('merlinio.lazyconfigs.lsp.on_attach')(client, bufnr)
     end,
     sources = {
         null_ls.builtins.formatting.prettierd,
