@@ -19,17 +19,18 @@ require('lazy').setup({
             vim.o.timeoutlen = 300
         end,
     },
-    { 'mbbill/undotree', lazy = false },
+    { 'mbbill/undotree',           lazy = false },
     -- LSP helper
     {
         'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
+        branch = 'v3.x',
         lazy = true,
-        config = function()
-            -- This is where you modify the settings for lsp-zero
-            -- Note: autocompletion settings will not take effect
-            require('lsp-zero.settings').preset('recommended')
-        end
+        config = false,
+        init = function()
+            -- Disable automatic setup, we are doing it manually
+            vim.g.lsp_zero_extend_cmp = 0
+            vim.g.lsp_zero_extend_lspconfig = 0
+        end,
     },
     -- Autocompletion
     {
@@ -40,19 +41,33 @@ require('lazy').setup({
         },
         config = function()
             -- Here is where you configure the autocompletion settings.
-            -- The arguments for .extend() have the same shape as `manage_nvim_cmp`:
-            -- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v2.x/doc/md/api-reference.md#manage_nvim_cmp
-            require('lsp-zero.cmp').extend({
-                set_sources = 'recommended',
-                set_basic_mappings = true,
-                set_extra_mappings = false,
-                use_luasnip = true,
-                set_format = true,
-                documentation_window = true,
+            local lsp_zero = require('lsp-zero')
+            lsp_zero.extend_cmp()
+
+            -- And you can configure cmp even more, if you want to.
+            local cmp = require('cmp')
+            local cmp_action = lsp_zero.cmp_action()
+
+            cmp.setup({
+                mapping = cmp.mapping.preset.insert({
+                    ['<C-Space>'] = cmp.mapping.complete(),
+                    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+                    -- scroll up and down the documentation window
+                    ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+                    ['<C-d>'] = cmp.mapping.scroll_docs(4),
+                    -- snippets
+                    ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+                    ['<C-b>'] = cmp_action.luasnip_jump_backward(),
+                })
             })
         end
     },
     -- LSP
+    {
+        'williamboman/mason.nvim',
+        lazy = false,
+        config = true,
+    },
     {
         'neovim/nvim-lspconfig',
         cmd = 'LspInfo',
@@ -60,29 +75,29 @@ require('lazy').setup({
         dependencies = {
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'williamboman/mason-lspconfig.nvim' },
-            {
-                'williamboman/mason.nvim',
-                build = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
         },
         config = function()
             -- This is where all the LSP shenanigans will live
             local lsp = require('lsp-zero')
+            lsp.extend_lspconfig()
 
             lsp.on_attach(require('merlinio.lazyconfigs.lsp.on_attach'))
 
-            -- (Optional) Configure lua language server for neovim
-            require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
+            require('mason-lspconfig').setup({
+                ensure_installed = { 'lua_ls', 'rust_analyzer' },
+                handlers = {
+                    lsp.default_setup,
+                    lua_ls = function()
+                        local lua_opts = lsp.nvim_lua_ls()
+                        require('lspconfig').lua_ls.setup(lua_opts)
+                    end,
+                    -- will be done later on 'manually'
+                    jsonls = lsp.noop,
+                    rust_analyzer = lsp.noop,
+                }
+            })
+            -- manually setup servers
             require('merlinio.lazyconfigs.lsp.jsonls')
-
-            -- will be done later on 'manually'
-            lsp.skip_server_setup({ 'rust_analyzer' })
-
-            lsp.setup()
-
             require('merlinio.lazyconfigs.lsp.rust-tools') -- TODO only load based on ft
             require('merlinio.lazyconfigs.lsp.null_ls')
         end
