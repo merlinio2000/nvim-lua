@@ -47,8 +47,10 @@ require('lazy').setup({
             -- And you can configure cmp even more, if you want to.
             local cmp = require('cmp')
             local cmp_action = lsp_zero.cmp_action()
+            local cmp_format = lsp_zero.cmp_format()
 
             cmp.setup({
+                formatting = cmp_format,
                 mapping = cmp.mapping.preset.insert({
                     ['<C-Space>'] = cmp.mapping.complete(),
                     ['<CR>'] = cmp.mapping.confirm({ select = true }),
