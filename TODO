@@ -1,0 +1,2 @@
+- docker-compose.y(a)ml should be recognized as filetype 'yaml.docker-compose' not 'yaml'
+    DIRTY FIX: `set filetype=yaml.docker-compose`
