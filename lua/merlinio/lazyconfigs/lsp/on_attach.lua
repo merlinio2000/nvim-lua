@@ -1,14 +1,7 @@
 return function (client, bufnr)
+    -- formatting is handled separately
+
     local opts = { buffer = bufnr, remap = false }
-
-    -- placed this because of issues of double formatting, TODO check if still needed
-    if client.name == 'eslint' or client.name == 'volar' or client.name == 'tsserver' then
-        client.server_capabilities.documentFormattingProvider = false
-        client.server_capabilities.documentFormattingRangeProvider = false
-    end
-
-    opts['desc'] = 'Format Buffer'
-    vim.keymap.set({ 'n', 'v' }, '==', vim.lsp.buf.format, opts)
 
     opts['desc'] = 'Goto Definition'
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
