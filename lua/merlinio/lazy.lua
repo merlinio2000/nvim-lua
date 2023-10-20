@@ -101,7 +101,6 @@ require('lazy').setup({
             -- manually setup servers
             require('merlinio.lazyconfigs.lsp.jsonls')
             require('merlinio.lazyconfigs.lsp.rust-tools') -- TODO only load based on ft
-            require('merlinio.lazyconfigs.lsp.null_ls')
         end
     },
     {
@@ -112,20 +111,6 @@ require('lazy').setup({
             require('merlinio.lazyconfigs.treesitter')
         end
     },
-    -- { 'nvim-treesitter/playground' },
-    {
-        'jay-babu/mason-null-ls.nvim',
-        event = { 'BufReadPre', 'BufNewFile' },
-        dependencies = {
-            'williamboman/mason.nvim',
-            'jose-elias-alvarez/null-ls.nvim',
-        },
-        config = function()
-            require('mason-null-ls').setup({
-                ensure_installed = { 'prettierd', 'shellcheck', 'shfmt' }
-            })
-        end,
-    },
     {
         'glepnir/lspsaga.nvim',
         event = 'LspAttach',
@@ -134,6 +119,14 @@ require('lazy').setup({
             require('merlinio.lazyconfigs.lspsuga.saga')
         end
     },
+    -- linting
+    {
+        'mfussenegger/nvim-lint',
+        event = { 'BufReadPre', 'BufNewFile' },
+        config = require('merlinio.lazyconfigs.lint'),
+    },
+    -- formatting
+    require('merlinio.lazyconfigs.format'),
     {
         'lervag/vimtex',
         ft = { 'tex', 'bib' },
