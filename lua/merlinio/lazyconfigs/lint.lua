@@ -1,10 +1,10 @@
 return function()
 	require("lint").linters_by_ft = {
-		javascript = "eslint_d",
-		typescript = "eslint_d",
-		javascriptreact = "eslint_d",
-		typescriptreact = "eslint_d",
-		shell = "shellcheck",
+		javascript = { "eslint_d" },
+		typescript = { "eslint_d" },
+		javascriptreact = { "eslint_d" },
+		typescriptreact = { "eslint_d" },
+		shell = { "shellcheck" },
 	}
 
 	local lint_group = vim.api.nvim_create_augroup("Linting", {
