@@ -40,6 +40,9 @@ require("lazy").setup({
 		end,
 	},
 	-- Autocompletion
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-path" },
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -48,7 +51,6 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lsp",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
 		},
 		config = function()
 			-- Here is where you configure the autocompletion settings.
@@ -61,6 +63,12 @@ require("lazy").setup({
 			local cmp_format = lsp_zero.cmp_format()
 
 			cmp.setup({
+				sources = {
+					{ name = "path" },
+					{ name = "nvim_lsp" },
+					{ name = "buffer", keyword_length = 3 },
+					{ name = "luasnip", keyword_length = 2 },
+				},
 				formatting = cmp_format,
 				mapping = cmp.mapping.preset.insert({
 					["<C-Space>"] = cmp.mapping.complete(),
@@ -83,7 +91,7 @@ require("lazy").setup({
 	},
 	{
 		"neovim/nvim-lspconfig",
-		cmd = "LspInfo",
+		cmd = { "LspInfo", "LspInstall", "LspStart" },
 		event = { "BufReadPre", "BufNewFile" },
 		dependencies = {
 			{ "hrsh7th/cmp-nvim-lsp" },
