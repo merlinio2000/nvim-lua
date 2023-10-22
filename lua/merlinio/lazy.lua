@@ -29,11 +29,6 @@ require("lazy").setup({
 		"VonHeikemen/lsp-zero.nvim",
 		dependencies = {
 			"neovim/nvim-lspconfig",
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/nvim-cmp",
-			"hrsh7th/cmp-buffer",
-			"hrsh7th/cmp-path",
-			"hrsh7th/cmp-cmdline",
 		},
 		branch = "v3.x",
 		lazy = true,
@@ -49,7 +44,11 @@ require("lazy").setup({
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
 		dependencies = {
-			{ "L3MON4D3/LuaSnip" },
+			"L3MON4D3/LuaSnip",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
 		},
 		config = function()
 			-- Here is where you configure the autocompletion settings.
