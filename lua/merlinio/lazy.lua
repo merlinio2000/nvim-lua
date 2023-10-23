@@ -154,6 +154,12 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"vlime/vlime",
+		config = function(plugin)
+			vim.opt.rtp:append(plugin.dir .. "vim/")
+		end,
+	},
+	{
 		"simrat39/rust-tools.nvim",
 		ft = { "rust", "toml" },
 	},
