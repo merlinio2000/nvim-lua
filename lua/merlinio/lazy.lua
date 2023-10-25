@@ -1,12 +1,10 @@
 require("lazy").setup({
 	-- Theme
 	{
-		"olimorris/onedarkpro.nvim",
+		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		config = function()
-			require("merlinio.theme")
-		end,
+		opts = {},
 	},
 	{ "nvim-tree/nvim-web-devicons" },
 	-- misc
