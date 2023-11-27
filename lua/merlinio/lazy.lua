@@ -47,6 +47,7 @@ require("lazy").setup({
 		dependencies = {
 			"L3MON4D3/LuaSnip",
 			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
 		},
@@ -64,11 +65,17 @@ require("lazy").setup({
 				sources = {
 					{ name = "path" },
 					{ name = "nvim_lsp" },
+					{ name = "nvim_lua" },
 					{ name = "buffer", keyword_length = 3 },
 					{ name = "luasnip", keyword_length = 2 },
 				},
 				formatting = cmp_format,
 				mapping = cmp.mapping.preset.insert({
+					-- smartly invokes completion/snippet depending on context
+					-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/autocomplete.md#enable-super-tab
+					["<Tab>"] = cmp_action.luasnip_supertab(),
+					["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					-- scroll up and down the documentation window

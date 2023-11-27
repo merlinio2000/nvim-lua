@@ -1,1 +1,1 @@
-require('merlinio')
+require("merlinio")
