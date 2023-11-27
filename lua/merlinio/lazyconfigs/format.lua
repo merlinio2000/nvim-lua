@@ -33,6 +33,7 @@ return {
 				typescriptreact = { "prettierd" },
 				html = { "prettierd" },
 				css = { "prettierd" },
+				python = { "ruff_format" },
 			},
 		}
 		return opts

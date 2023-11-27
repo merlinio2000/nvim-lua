@@ -5,6 +5,7 @@ return function()
 		javascriptreact = { "eslint_d" },
 		typescriptreact = { "eslint_d" },
 		shell = { "shellcheck" },
+		python = { "ruff" },
 	}
 
 	local lint_group = vim.api.nvim_create_augroup("Linting", {
