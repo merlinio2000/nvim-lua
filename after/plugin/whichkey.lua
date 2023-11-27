@@ -7,6 +7,7 @@ wk.register({
 		f = { name = "+find", g = "+git" },
 		g = { name = "+git" },
 		h = { name = "+harpoon" },
+		s = { name = "+suga [LSP]" },
 		t = { name = "+file tree" },
 		v = {
 			name = "+view",
@@ -17,7 +18,4 @@ wk.register({
 	},
 	c = { name = "+comment [LSP]" },
 	g = { name = "+goto" },
-	s = { name = "+saga [LSP]", t = { name = "+terminal" } },
-	["["] = { name = "Jump Previous" },
-	["]"] = { name = "Jump Next" },
 })
