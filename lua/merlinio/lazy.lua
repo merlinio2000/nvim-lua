@@ -94,6 +94,8 @@ require("lazy").setup({
 		lazy = false,
 		config = true,
 	},
+	-- tools for nvim config development
+	{ "folke/neodev.nvim" },
 	{
 		"neovim/nvim-lspconfig",
 		cmd = { "LspInfo", "LspInstall", "LspStart" },
@@ -103,6 +105,7 @@ require("lazy").setup({
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
 		config = function()
+			require("neodev").setup({})
 			-- This is where all the LSP shenanigans will live
 			local lsp = require("lsp-zero")
 			lsp.extend_lspconfig()
@@ -113,10 +116,6 @@ require("lazy").setup({
 				ensure_installed = { "lua_ls", "rust_analyzer" },
 				handlers = {
 					lsp.default_setup,
-					lua_ls = function()
-						local lua_opts = lsp.nvim_lua_ls()
-						require("lspconfig").lua_ls.setup(lua_opts)
-					end,
 					-- will be done later on 'manually'
 					jsonls = lsp.noop,
 					rust_analyzer = lsp.noop,
