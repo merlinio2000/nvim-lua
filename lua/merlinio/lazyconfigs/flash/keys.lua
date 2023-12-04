@@ -1,6 +1,6 @@
 return {
 	{
-		"s",
+		"<C-f>",
 		mode = { "n", "x", "o" },
 		function()
 			require("flash").jump()
@@ -32,7 +32,7 @@ return {
 		desc = "Treesitter Search",
 	},
 	{
-		"<c-s>",
+		"<C-s>",
 		mode = { "c" },
 		function()
 			require("flash").toggle()

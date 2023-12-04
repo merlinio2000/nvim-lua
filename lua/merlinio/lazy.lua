@@ -135,6 +135,10 @@ require("lazy").setup({
 		end,
 	},
 	{
+		"nvim-treesitter/nvim-treesitter-textobjects",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+	},
+	{
 		url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
 		config = function()
 			local rainbow_delimiters = require("rainbow-delimiters")
@@ -185,7 +189,7 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"vlime/vlime",
+		"vlime/vlime", -- TODO: remove
 		config = function(plugin)
 			vim.opt.rtp:append(plugin.dir .. "vim/")
 		end,
@@ -236,6 +240,13 @@ require("lazy").setup({
 		opts = {},
 		keys = require("merlinio.lazyconfigs.flash.keys"),
 	},
+	{
+		"kylechui/nvim-surround",
+		version = "*", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = require("merlinio.lazyconfigs.surround.setup"),
+	},
+	-- UI
 	{ "nvim-lualine/lualine.nvim", lazy = false },
 	{
 		"akinsho/bufferline.nvim",
