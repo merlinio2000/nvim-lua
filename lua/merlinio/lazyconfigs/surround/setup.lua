@@ -11,9 +11,7 @@ return function()
 			visual_line = false,
 			delete = "ds",
 			change = "cs",
-			--TODO: remove after my MR is merged:
-			-- https://github.com/kylechui/nvim-surround/pull/286
-			change_line = "cX",
+			change_line = false,
 		},
 	})
 end
