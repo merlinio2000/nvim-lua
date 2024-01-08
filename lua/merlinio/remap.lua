@@ -3,10 +3,6 @@ vim.g.maplocalleader = ","
 
 vim.keymap.set("n", "+", "<C-w>>", { desc = "Enlarge Buffer" })
 vim.keymap.set("n", "-", "<C-w><", { desc = "Shrink Buffer" })
-vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Right Screen" })
-vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Left Screen" })
-vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Lower Screen" })
-vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Upper Screen" })
 vim.keymap.set("n", "H", ":bprev<CR>", { desc = "Previous Buffer" })
 vim.keymap.set("n", "L", ":bnext<CR>", { desc = "Next Buffer" })
 
@@ -15,11 +11,7 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- greatest remap ever ?????
--- vim.keymap.set("x", "<leader>pp", [["_dP]])
 vim.keymap.set({ "n", "v" }, "<leader>pp", [["+p]])
-
--- next greatest remap ever : asbjornHaland
 vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
 
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])

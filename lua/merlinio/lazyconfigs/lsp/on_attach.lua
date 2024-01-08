@@ -15,6 +15,9 @@ return function(client, bufnr)
 	opts["desc"] = "Hover info"
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
 
+	opts["desc"] = "Signature Help"
+	vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
+
 	opts["desc"] = "View Workspace Symbol"
 	vim.keymap.set("n", "<leader>vws", vim.lsp.buf.workspace_symbol, opts)
 
@@ -29,7 +32,4 @@ return function(client, bufnr)
 
 	opts["desc"] = "View Reference Rename"
 	vim.keymap.set("n", "<leader>vrn", vim.lsp.buf.rename, opts)
-
-	opts["desc"] = "Completions"
-	vim.keymap.set("i", "<C-.>", vim.lsp.buf.completion, opts)
 end
