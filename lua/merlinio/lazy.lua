@@ -1,10 +1,23 @@
 require("lazy").setup({
 	-- Theme
+	-- {
+	-- 	"folke/tokyonight.nvim",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	opts = {},
+	-- },
 	{
-		"folke/tokyonight.nvim",
-		lazy = false,
+		"catppuccin/nvim",
+		name = "catppuccin",
 		priority = 1000,
-		opts = {},
+		lazy = false,
+		opts = {
+			integrations = {
+				lsp_trouble = true,
+				which_key = true,
+				lsp_saga = true,
+			},
+		},
 	},
 	{ "nvim-tree/nvim-web-devicons" },
 	-- misc
@@ -35,7 +48,7 @@ require("lazy").setup({
 		},
 		branch = "v3.x",
 		lazy = true,
-		config = false,
+		config = nil,
 		init = function()
 			-- Disable automatic setup, we are doing it manually
 			vim.g.lsp_zero_extend_cmp = 0
@@ -252,10 +265,25 @@ require("lazy").setup({
 		config = require("merlinio.lazyconfigs.surround.setup"),
 	},
 	-- UI
-	{ "nvim-lualine/lualine.nvim", lazy = false },
+	{
+		"nvim-lualine/lualine.nvim",
+		lazy = false,
+		opts = {
+			options = {
+				theme = "catppuccin",
+				component_separators = "|",
+				section_separators = { left = "", right = "" },
+				disabled_filetypes = {
+					statusline = {
+						"NvimTree",
+					},
+				},
+			},
+		},
+	},
 	{
 		"akinsho/bufferline.nvim",
-		version = "v3.*", -- TODO upgrade to v4
+		version = "*",
 		dependencies = "nvim-tree/nvim-web-devicons",
 		lazy = false,
 	},

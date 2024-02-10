@@ -1,3 +1,3 @@
 -- vim.o.background = "dark" -- or "light" for light mode
--- vim.cmd("colorscheme onedark")
-vim.cmd("colorscheme tokyonight-night")
+-- vim.cmd("colorscheme tokyonight-night")
+vim.cmd("colorscheme catppuccin")
