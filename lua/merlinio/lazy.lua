@@ -57,9 +57,13 @@ require("lazy").setup({
 		end,
 	},
 	-- Autocompletion
+	-- Dont exactly know why but these dont get recognized
+	-- if we only have them as deps in nvim-cmp
 	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/cmp-nvim-lua" },
 	{ "hrsh7th/cmp-buffer" },
 	{ "hrsh7th/cmp-path" },
+	{ "hrsh7th/cmp-cmdline" },
 	{
 		"hrsh7th/nvim-cmp",
 		event = "InsertEnter",
@@ -69,6 +73,7 @@ require("lazy").setup({
 			"hrsh7th/cmp-nvim-lua",
 			"hrsh7th/cmp-buffer",
 			"hrsh7th/cmp-path",
+			"hrsh7th/cmp-cmdline",
 		},
 		config = function()
 			-- Here is where you configure the autocompletion settings.
@@ -77,17 +82,19 @@ require("lazy").setup({
 
 			-- And you can configure cmp even more, if you want to.
 			local cmp = require("cmp")
+
 			local cmp_action = lsp_zero.cmp_action()
 			local cmp_format = lsp_zero.cmp_format()
 
 			cmp.setup({
-				sources = {
+				sources = cmp.config.sources({
 					{ name = "path" },
 					{ name = "nvim_lsp" },
 					{ name = "nvim_lua" },
-					{ name = "buffer", keyword_length = 3 },
+				}, {
 					{ name = "luasnip", keyword_length = 2 },
-				},
+					{ name = "buffer", keyword_length = 3 },
+				}),
 				formatting = cmp_format,
 				mapping = cmp.mapping.preset.insert({
 					-- smartly invokes completion/snippet depending on context
@@ -104,6 +111,14 @@ require("lazy").setup({
 					["<C-f>"] = cmp_action.luasnip_jump_forward(),
 					["<C-b>"] = cmp_action.luasnip_jump_backward(),
 				}),
+			})
+
+			cmp.setup.cmdline(":", {
+				mapping = cmp.mapping.preset.cmdline(),
+				sources = {
+					{ name = "path" },
+					{ name = "cmdline" },
+				},
 			})
 		end,
 	},
