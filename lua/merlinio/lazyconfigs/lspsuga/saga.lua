@@ -79,7 +79,12 @@ saga.setup({
 keymap("n", "<leader>sf", "<cmd>Lspsaga lsp_finder<CR>", { silent = true })
 
 -- Code action
-keymap({ "n", "v" }, "<leader>sa", "<cmd>Lspsaga code_action<CR>", { silent = true })
+keymap(
+	{ "n", "v" },
+	"<leader>sa",
+	"<cmd>Lspsaga code_action<CR>",
+	{ silent = true }
+)
 
 -- Rename
 keymap("n", "<F2>", "<cmd>Lspsaga rename<CR>", { silent = true })
@@ -96,4 +101,9 @@ keymap("n", "<leader>so", "<cmd>Lspsaga outline<CR>", { silent = true })
 -- Hover Doc
 keymap("n", "<leader>sk", "<cmd>Lspsaga hover_doc<CR>", { silent = true })
 -- keeps hover window open pinned to the right
-keymap("n", "<leader>sK", "<cmd>Lspsaga hover_doc ++keep<CR>", { silent = true })
+keymap(
+	"n",
+	"<leader>sK",
+	"<cmd>Lspsaga hover_doc ++keep<CR>",
+	{ silent = true }
+)

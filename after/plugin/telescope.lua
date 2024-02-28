@@ -11,7 +11,9 @@ tel.setup({
 			mappings = { -- extend mappings
 				i = {
 					["<C-q>"] = lga_actions.quote_prompt(),
-					["<C-i>"] = lga_actions.quote_prompt({ postfix = " --iglob " }),
+					["<C-i>"] = lga_actions.quote_prompt({
+						postfix = " --iglob ",
+					}),
 				},
 			},
 			-- ... also accepts theme settings, for example:
@@ -43,7 +45,12 @@ vim.keymap.set(
 	{ desc = "Find Text" }
 )
 local live_grep_args_shortcuts = require("telescope-live-grep-args.shortcuts")
-vim.keymap.set("n", "<leader>fc", live_grep_args_shortcuts.grep_word_under_cursor, { desc = "Find word under Cursor" })
+vim.keymap.set(
+	"n",
+	"<leader>fc",
+	live_grep_args_shortcuts.grep_word_under_cursor,
+	{ desc = "Find word under Cursor" }
+)
 vim.keymap.set(
 	"v",
 	"<leader>fv",
@@ -53,15 +60,55 @@ vim.keymap.set(
 
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find Buffers" })
 
-vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Find Old Files (previously used)" })
+vim.keymap.set(
+	"n",
+	"<leader>fo",
+	builtin.oldfiles,
+	{ desc = "Find Old Files (previously used)" }
+)
 
-vim.keymap.set("n", "<leader>fgf", builtin.git_files, { desc = "Find Git Files" })
-vim.keymap.set("n", "<leader>fgb", builtin.git_branches, { desc = "Find Git Branches" })
-vim.keymap.set("n", "<leader>fgc", builtin.git_commits, { desc = "Find Git Commits" })
-vim.keymap.set("n", "<leader>fgl", builtin.git_bcommits, { desc = "Find Git Commits for this Buffer" })
-vim.keymap.set("n", "<leader>fgs", builtin.git_status, { desc = "Find Git Status (local changes)" })
+vim.keymap.set(
+	"n",
+	"<leader>fgf",
+	builtin.git_files,
+	{ desc = "Find Git Files" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fgb",
+	builtin.git_branches,
+	{ desc = "Find Git Branches" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fgc",
+	builtin.git_commits,
+	{ desc = "Find Git Commits" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fgl",
+	builtin.git_bcommits,
+	{ desc = "Find Git Commits for this Buffer" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fgs",
+	builtin.git_status,
+	{ desc = "Find Git Status (local changes)" }
+)
 
-vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Find Resume last search" })
-vim.keymap.set("n", "<leader>fp", builtin.pickers, { desc = "Find Resume previous pickers" })
+vim.keymap.set(
+	"n",
+	"<leader>fr",
+	builtin.resume,
+	{ desc = "Find Resume last search" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>fp",
+	builtin.pickers,
+	{ desc = "Find Resume previous pickers" }
+)
 
 vim.keymap.set("n", "<leader>fx", builtin.builtin, { desc = "Find Pickers" })
