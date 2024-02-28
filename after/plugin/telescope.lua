@@ -1,16 +1,23 @@
 local tel = require("telescope")
 local lga_actions = require("telescope-live-grep-args.actions")
+local trouble = require("trouble")
 
 -- You dont need to set any of these options. These are the default ones. Only
 -- the loading is important
 tel.setup({
+	defaults = {
+		mappings = {
+			i = { ["<c-t>"] = trouble.open_with_trouble },
+			n = { ["<c-t>"] = trouble.open_with_trouble },
+		},
+	},
 	extensions = {
 		live_grep_args = {
 			auto_quoting = true, -- enable/disable auto-quoting
 			-- define mappings, e.g.
 			mappings = { -- extend mappings
 				i = {
-					["<C-q>"] = lga_actions.quote_prompt(),
+					["<C-g>"] = lga_actions.quote_prompt(),
 					["<C-i>"] = lga_actions.quote_prompt({
 						postfix = " --iglob ",
 					}),
@@ -110,5 +117,4 @@ vim.keymap.set(
 	builtin.pickers,
 	{ desc = "Find Resume previous pickers" }
 )
-
 vim.keymap.set("n", "<leader>fx", builtin.builtin, { desc = "Find Pickers" })
