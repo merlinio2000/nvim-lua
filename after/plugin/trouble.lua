@@ -33,7 +33,7 @@ vim.keymap.set(
 )
 vim.keymap.set(
 	"n",
-	"<leader>xr",
+	"gr",
 	"<cmd>TroubleToggle lsp_references<cr>",
 	{ silent = true, noremap = true }
 )
