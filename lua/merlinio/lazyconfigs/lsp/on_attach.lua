@@ -7,10 +7,10 @@ return function(client, bufnr)
 	vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 
 	opts["desc"] = "Goto Next Diagnostic"
-	vim.keymap.set("n", "gnd", vim.diagnostic.goto_next, opts)
+	vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 
 	opts["desc"] = "Goto Previous Diagnostic"
-	vim.keymap.set("n", "gpd", vim.diagnostic.goto_prev, opts)
+	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 
 	opts["desc"] = "Hover info"
 	vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
