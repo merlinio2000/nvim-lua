@@ -143,7 +143,7 @@ require("lazy").setup({
 			lsp.on_attach(require("merlinio.lazyconfigs.lsp.on_attach"))
 
 			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "stylua", "rust_analyzer" },
+				ensure_installed = { "lua_ls", "rust_analyzer" },
 				handlers = {
 					lsp.default_setup,
 					-- will be done later on 'manually'
