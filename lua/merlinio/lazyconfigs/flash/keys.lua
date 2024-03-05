@@ -1,6 +1,6 @@
 return {
 	{
-		"<C-f>",
+		"s",
 		mode = { "n", "x", "o" },
 		function()
 			require("flash").jump()
