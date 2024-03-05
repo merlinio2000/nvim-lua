@@ -97,19 +97,15 @@ require("lazy").setup({
 				}),
 				formatting = cmp_format,
 				mapping = cmp.mapping.preset.insert({
-					-- smartly invokes completion/snippet depending on context
-					-- https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/autocomplete.md#enable-super-tab
-					["<Tab>"] = cmp_action.luasnip_supertab(),
-					["<S-Tab>"] = cmp_action.luasnip_shift_supertab(),
+					-- snippets
+					["<Tab>"] = cmp_action.luasnip_jump_forward(),
+					["<S-Tab>"] = cmp_action.luasnip_jump_backward(),
 
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					-- scroll up and down the documentation window
-					["<C-u>"] = cmp.mapping.scroll_docs(-4),
-					["<C-d>"] = cmp.mapping.scroll_docs(4),
-					-- snippets
-					["<C-f>"] = cmp_action.luasnip_jump_forward(),
-					["<C-b>"] = cmp_action.luasnip_jump_backward(),
+					["<C-b>"] = cmp.mapping.scroll_docs(-4),
+					["<C-f>"] = cmp.mapping.scroll_docs(4),
 				}),
 			})
 
