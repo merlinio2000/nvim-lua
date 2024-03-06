@@ -98,14 +98,14 @@ require("lazy").setup({
 				formatting = cmp_format,
 				mapping = cmp.mapping.preset.insert({
 					-- snippets
-					["<Tab>"] = cmp_action.luasnip_jump_forward(),
-					["<S-Tab>"] = cmp_action.luasnip_jump_backward(),
+					["<C-f>"] = cmp_action.luasnip_jump_forward(),
+					["<C-b>"] = cmp_action.luasnip_jump_backward(),
 
 					["<C-Space>"] = cmp.mapping.complete(),
 					["<CR>"] = cmp.mapping.confirm({ select = true }),
 					-- scroll up and down the documentation window
-					["<C-b>"] = cmp.mapping.scroll_docs(-4),
-					["<C-f>"] = cmp.mapping.scroll_docs(4),
+					["<C-d>"] = cmp.mapping.scroll_docs(-4),
+					["<C-u>"] = cmp.mapping.scroll_docs(4),
 				}),
 			})
 
