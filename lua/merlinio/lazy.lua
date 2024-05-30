@@ -135,6 +135,8 @@ require("lazy").setup({
 			{ "williamboman/mason-lspconfig.nvim" },
 		},
 		config = function()
+			vim.lsp.inlay_hint.enable()
+
 			require("neodev").setup({})
 			-- This is where all the LSP shenanigans will live
 			local lsp = require("lsp-zero")
@@ -174,7 +176,6 @@ require("lazy").setup({
 			})
 			-- manually setup servers
 			require("merlinio.lazyconfigs.lsp.jsonls")
-			require("merlinio.lazyconfigs.lsp.rust-tools") -- TODO only load based on ft
 		end,
 	},
 	{
@@ -240,8 +241,9 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"simrat39/rust-tools.nvim",
-		ft = { "rust", "toml" },
+		"mrcjkb/rustaceanvim",
+		version = "^4", -- Recommended
+		lazy = false, -- This plugin is already lazy
 	},
 	{
 		"numToStr/Comment.nvim",
