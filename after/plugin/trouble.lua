@@ -1,7 +1,7 @@
 require("trouble").setup({})
 
 -- Lua
-vim.keymap.set(
+--[[ vim.keymap.set(
 	"n",
 	"<leader>xx",
 	"<cmd>TroubleToggle<cr>",
@@ -42,4 +42,4 @@ vim.keymap.set("n", "]x", function()
 end, { silent = true, noremap = true })
 vim.keymap.set("n", "[x", function()
 	require("trouble").previous({ skip_groups = true, jump = true })
-end, { silent = true, noremap = true })
+end, { silent = true, noremap = true }) ]]
