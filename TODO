@@ -1,2 +1,6 @@
 - docker-compose.y(a)ml should be recognized as filetype 'yaml.docker-compose' not 'yaml'
     DIRTY FIX: `set filetype=yaml.docker-compose`
+
+- LSP commenting should now be a native motion (0.10)
+
+- re-evaluate trouble config (v3)
