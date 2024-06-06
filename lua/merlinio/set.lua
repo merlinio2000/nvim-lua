@@ -34,4 +34,6 @@ vim.opt.colorcolumn = "80"
 
 vim.opt.splitright = true
 
+vim.g.omni_sql_no_default_maps = 1
+
 -- vim.opt.wildmode = ""
