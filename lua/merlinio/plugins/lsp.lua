@@ -10,6 +10,7 @@ return {
 			"b0o/SchemaStore.nvim",
 		},
 		config = function()
+			vim.lsp.inlay_hint.enable()
 			require("neodev").setup({
 				-- library = {
 				--   plugins = { "nvim-dap-ui" },
