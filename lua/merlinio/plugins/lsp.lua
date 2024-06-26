@@ -28,6 +28,7 @@ return {
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
+					"bashls",
 					"rust_analyzer",
 					"jsonls",
 					"yamlls",
@@ -54,7 +55,7 @@ return {
 				lua_ls = true,
 				-- managed through rustacean.nvim
 				-- rust_analyzer = true,
-				-- Probably want to disable formatting for this lang server
+				-- probably want to disable formatting for this lang server
 				tsserver = true,
 				jsonls = {
 					settings = {
