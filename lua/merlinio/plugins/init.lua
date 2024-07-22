@@ -16,6 +16,7 @@ return {
 				which_key = true,
 				lsp_saga = true,
 				noice = true,
+				nvim_surround = true,
 			},
 		},
 	},
@@ -30,6 +31,7 @@ return {
 
 			wk.setup()
 
+			-- TODO: move to .add
 			wk.register({
 				["<leader>"] = {
 					f = { name = "+find", g = { name = "+git" } },
