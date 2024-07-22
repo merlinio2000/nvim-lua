@@ -29,25 +29,19 @@ return {
 		config = function()
 			local wk = require("which-key")
 
-			wk.setup()
-
-			-- TODO: move to .add
-			wk.register({
-				["<leader>"] = {
-					f = { name = "+find", g = { name = "+git" } },
-					g = { name = "+git" },
-					h = { name = "+harpoon" },
-					s = { name = "+suga [LSP]" },
-					t = { name = "+file tree" },
-					c = {
-						name = "+code",
-					},
-					x = { name = "+trouble" },
-				},
-				c = { name = "+comment [LSP]" },
-				g = { name = "+goto" },
-				["]"] = { name = "+next" },
-				["["] = { name = "+previous" },
+			wk.add({
+				{ "<leader>c", group = "code" },
+				{ "<leader>f", group = "find" },
+				{ "<leader>fg", group = "git" },
+				{ "<leader>g", group = "git" },
+				{ "<leader>h", group = "harpoon" },
+				{ "<leader>s", group = "suga [LSP]" },
+				{ "<leader>t", group = "file tree" },
+				{ "<leader>x", group = "trouble" },
+				{ "[", group = "previous" },
+				{ "]", group = "next" },
+				{ "c", group = "comment [LSP]" },
+				{ "g", group = "goto" },
 			})
 		end,
 		init = function()
