@@ -44,7 +44,7 @@ return {
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
 		---@type user_options
-		config = {
+		opts = {
 			keymaps = {
 				insert = false,
 				insert_line = false,
