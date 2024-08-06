@@ -1,4 +1,5 @@
 return {
+	---@type LazySpec
 	{
 		"folke/trouble.nvim",
 		---@type trouble.Config
@@ -6,38 +7,38 @@ return {
 		cmd = "Trouble",
 		keys = {
 			{
-				"n",
 				"<leader>xx",
+				mode = "n",
 				"<cmd>Trouble diagnostics toggle<cr>",
 				desc = "Diagnostics (Trouble)",
 			},
 			{
-				"n",
 				"<leader>xX",
+				mode = "n",
 				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
 				desc = "Buffer Diagnostics (Trouble)",
 			},
 			{
-				"n",
 				"<leader>cs",
+				mode = "n",
 				"<cmd>Trouble symbols toggle focus=false<cr>",
 				desc = "Symbols (Trouble)",
 			},
 			{
-				"n",
 				"<leader>cl",
+				mode = "n",
 				"<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
 				desc = "LSP Definitions / references / ... (Trouble)",
 			},
 			{
-				"n",
 				"<leader>xl",
+				mode = "n",
 				"<cmd>Trouble loclist toggle<cr>",
 				desc = "Location List (Trouble)",
 			},
 			{
-				"n",
 				"<leader>xq",
+				mode = "n",
 				"<cmd>Trouble qflist toggle<cr>",
 				desc = "Quickfix List (Trouble)",
 			},

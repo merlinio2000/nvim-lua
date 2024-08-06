@@ -7,7 +7,9 @@ return {
 		keys = {
 			{
 				"s",
-				mode = { "n", "x", "o" },
+				mode = {
+					"n", --[[ "x", "o" ]]
+				},
 				function()
 					require("flash").jump()
 				end,
