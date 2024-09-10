@@ -56,7 +56,7 @@ return {
 				-- managed through rustacean.nvim
 				-- rust_analyzer = true,
 				-- probably want to disable formatting for this lang server
-				tsserver = true,
+				ts_ls = true,
 				jsonls = {
 					settings = {
 						json = {
