@@ -11,6 +11,7 @@ return {
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "make",
 		},
+		"nvim-telescope/telescope-ui-select.nvim",
 	},
 	config = function()
 		local tel = require("telescope")
@@ -45,11 +46,15 @@ return {
 					-- layout_config = { mirror=true }, -- mirror preview pane
 				},
 				fzf = {},
+				["ui-select"] = {
+					require("telescope.themes").get_dropdown({}),
+				},
 			},
 		})
 
 		tel.load_extension("live_grep_args")
 		tel.load_extension("fzf")
+		tel.load_extension("ui-select")
 		local keymap = vim.keymap.set
 		keymap("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
 		keymap(
