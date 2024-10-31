@@ -52,6 +52,7 @@ return {
 						},
 					},
 				},
+				dockerls = true,
 				lua_ls = true,
 				-- managed through rustacean.nvim
 				-- rust_analyzer = true,
@@ -79,14 +80,16 @@ return {
 			}
 
 			for name, config in pairs(servers) do
-				if config == true then
-					config = {}
-				end
-				config = vim.tbl_deep_extend("force", {
-					capabilities = capabilities,
-				}, config)
+				if config then
+					if config == true then
+						config = {}
+					end
+					config = vim.tbl_deep_extend("force", {
+						capabilities = capabilities,
+					}, config)
 
-				lspconfig[name].setup(config)
+					lspconfig[name].setup(config)
+				end
 			end
 
 			vim.api.nvim_create_autocmd("LspAttach", {
