@@ -21,19 +21,18 @@ return {
 			require("telescope-live-grep-args.shortcuts")
 		local open_with_trouble = require("trouble.sources.telescope").open
 		tel.setup({
-			defaults = {
+			defaults = require("telescope.themes").get_ivy({
 				wrap_results = true,
 				mappings = {
 					i = { ["<c-x>"] = open_with_trouble },
 					n = { ["<c-x>"] = open_with_trouble },
 				},
-			},
+			}),
 			extensions = {
 				live_grep_args = {
 					auto_quoting = true, -- enable/disable auto-quoting
 					mappings = {
 						i = {
-							["<C-g>"] = lga_actions.quote_prompt(),
 							["<C-i>"] = lga_actions.quote_prompt({
 								postfix = " --iglob ",
 							}),
