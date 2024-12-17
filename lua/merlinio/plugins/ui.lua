@@ -13,6 +13,19 @@ return {
 					},
 				},
 			},
+			sections = {
+				lualine_a = {
+					"mode",
+					function()
+						local recording_reg = vim.fn.reg_recording()
+						if recording_reg ~= "" then
+							return "Recording @" .. recording_reg
+						else
+							return ""
+						end
+					end,
+				},
+			},
 		},
 	},
 	{
