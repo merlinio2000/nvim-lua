@@ -53,6 +53,7 @@ return {
 				},
 				dockerls = true,
 				lua_ls = true,
+				jdtls = true,
 				-- managed through rustacean.nvim
 				-- rust_analyzer = true,
 				-- probably want to disable formatting for this lang server
