@@ -29,7 +29,6 @@ return {
 				ensure_installed = {
 					"lua_ls",
 					"bashls",
-					"rust_analyzer",
 					"jsonls",
 					"yamlls",
 				},
