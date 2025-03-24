@@ -51,7 +51,9 @@ return {
 						},
 					},
 				},
+				basedpyright = true,
 				dockerls = true,
+				docker_compose_language_service = true,
 				lua_ls = true,
 				jdtls = true,
 				-- managed through rustacean.nvim
