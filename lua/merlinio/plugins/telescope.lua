@@ -27,6 +27,7 @@ return {
 					i = { ["<c-x>"] = open_with_trouble },
 					n = { ["<c-x>"] = open_with_trouble },
 				},
+				preview = { filesize_limit = 5 },
 			}),
 			extensions = {
 				live_grep_args = {
