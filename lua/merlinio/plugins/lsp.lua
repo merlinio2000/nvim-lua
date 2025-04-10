@@ -1,8 +1,18 @@
 return {
 	{
+
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- auto-load types and stuff without require(...) from lazy.nvim
+				"lazy.nvim",
+			},
+		},
+	},
+	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
-			"folke/neodev.nvim",
 			"williamboman/mason.nvim",
 			"williamboman/mason-lspconfig.nvim",
 
@@ -11,12 +21,6 @@ return {
 		},
 		config = function()
 			vim.lsp.inlay_hint.enable()
-			require("neodev").setup({
-				-- library = {
-				--   plugins = { "nvim-dap-ui" },
-				--   types = true,
-				-- },
-			})
 
 			local capabilities = nil
 			if pcall(require, "cmp_nvim_lsp") then
