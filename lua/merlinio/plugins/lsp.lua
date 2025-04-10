@@ -22,6 +22,10 @@ return {
 		config = function()
 			vim.lsp.inlay_hint.enable()
 
+			vim.diagnostic.config({
+				virtual_lines = true,
+			})
+
 			local capabilities = nil
 			if pcall(require, "cmp_nvim_lsp") then
 				capabilities = require("cmp_nvim_lsp").default_capabilities()
