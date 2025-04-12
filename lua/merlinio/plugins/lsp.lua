@@ -60,6 +60,7 @@ return {
 					},
 				},
 				basedpyright = true,
+				clangd = true,
 				dockerls = true,
 				docker_compose_language_service = true,
 				lua_ls = true,
