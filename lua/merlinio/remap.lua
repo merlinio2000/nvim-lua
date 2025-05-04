@@ -24,16 +24,6 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<localleader>m", "q", { desc = "Record Macro" })
 vim.keymap.set("n", "q", "<nop>")
 
-vim.keymap.set("n", "]q", "<cmd>cnext<CR>zz", { desc = "Quick-Fix Next" })
-vim.keymap.set("n", "[q", "<cmd>cprev<CR>zz", { desc = "Quick-Fix Previous" })
-vim.keymap.set("n", "]l", "<cmd>lnext<CR>zz", { desc = "Locationlist Next" })
-vim.keymap.set(
-	"n",
-	"[l",
-	"<cmd>lprev<CR>zz",
-	{ desc = "Locationlist Previous" }
-)
-
 vim.keymap.set(
 	"n",
 	"<leader>s",
