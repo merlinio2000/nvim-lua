@@ -41,7 +41,8 @@ return {
 		end,
 	},
 	{
-		url = "https://gitlab.com/HiPhish/rainbow-delimiters.nvim",
+		"HiPhish/rainbow-delimiters.nvim",
+		submodules = false,
 		config = function()
 			local rainbow_delimiters = require("rainbow-delimiters")
 
