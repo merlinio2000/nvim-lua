@@ -99,7 +99,8 @@ return {
 						capabilities = capabilities,
 					}, config)
 
-					lspconfig[name].setup(config)
+					vim.lsp.config(name, config)
+					vim.lsp.enable(name)
 				end
 			end
 
@@ -115,19 +116,6 @@ return {
 					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 					opts["desc"] = "Goto Type"
 					vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
-					opts["desc"] = "Goto References"
-					vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-
-					opts["desc"] = "Hover info"
-					vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
-
-					opts["desc"] = "Signature Help"
-					vim.keymap.set(
-						"i",
-						"<C-h>",
-						vim.lsp.buf.signature_help,
-						opts
-					)
 
 					opts["desc"] = "Workspace Symbols"
 					vim.keymap.set(
@@ -143,15 +131,6 @@ return {
 						vim.diagnostic.open_float,
 						opts
 					)
-					opts["desc"] = "Code Actions"
-					vim.keymap.set(
-						"n",
-						"<leader>ca",
-						vim.lsp.buf.code_action,
-						opts
-					)
-					opts["desc"] = "Rename Reference"
-					vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, opts)
 				end,
 			})
 		end,
