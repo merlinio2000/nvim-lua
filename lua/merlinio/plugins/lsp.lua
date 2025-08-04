@@ -1,3 +1,35 @@
+local function make_vue_extension()
+	local vue_language_server_path = vim.fn.expand("$MASON/packages")
+		.. "/vue-language-server"
+		.. "/node_modules/@vue/language-server"
+
+	local vue_plugin = {
+		name = "@vue/typescript-plugin",
+		location = vue_language_server_path,
+		languages = { "vue" },
+		configNamespace = "typescript",
+	}
+
+	local ts_ls_config = {
+		init_options = {
+			plugins = {
+				vue_plugin,
+			},
+		},
+		filetypes = {
+			"typescript",
+			"javascript",
+			"javascriptreact",
+			"typescriptreact",
+			"vue",
+		},
+	}
+
+	return {
+		configs = { ts_ls = ts_ls_config },
+	}
+end
+
 return {
 	{
 
@@ -42,6 +74,8 @@ return {
 				},
 			})
 
+			local vue_ext = make_vue_extension()
+
 			local servers = {
 				bashls = true,
 				gopls = {
@@ -68,7 +102,9 @@ return {
 				-- managed through rustacean.nvim
 				-- rust_analyzer = true,
 				-- probably want to disable formatting for this lang server
-				ts_ls = true,
+				-- replaced? by vtsls
+				ts_ls = vue_ext.configs.ts_ls,
+				vue_ls = true,
 				jsonls = {
 					settings = {
 						json = {
