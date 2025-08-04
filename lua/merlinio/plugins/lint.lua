@@ -9,6 +9,7 @@ return {
 			typescriptreact = { "eslint_d" },
 			shell = { "shellcheck" },
 			python = { "ruff" },
+			go = { "golangcilint" },
 		}
 
 		local lint_group = vim.api.nvim_create_augroup("Linting", {
