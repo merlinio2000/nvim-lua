@@ -24,8 +24,10 @@ vim.keymap.set("n", "Q", "<nop>")
 vim.keymap.set("n", "<localleader>m", "q", { desc = "Record Macro" })
 vim.keymap.set("n", "q", "<nop>")
 
+vim.keymap.set("n", "<leader>s", ":e #<CR>")
+
 vim.keymap.set(
 	"n",
-	"<leader>s",
+	"<leader>r",
 	[[:%s/<C-r><C-w>/<C-r><C-w>/g<Left><Left><Left>]]
 )
