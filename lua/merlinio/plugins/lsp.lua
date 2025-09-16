@@ -32,7 +32,6 @@ return {
 			end
 
 			require("mason").setup()
-			local lspconfig = require("lspconfig")
 			require("mason-lspconfig").setup({
 				ensure_installed = {
 					"lua_ls",
@@ -43,7 +42,12 @@ return {
 			})
 
 			local servers = {
+				asm_lsp = true,
+				basedpyright = true,
 				bashls = true,
+				clangd = true,
+				dockerls = true,
+				docker_compose_language_service = true,
 				gopls = {
 					settings = {
 						gopls = {
@@ -59,16 +63,7 @@ return {
 						},
 					},
 				},
-				basedpyright = true,
-				clangd = true,
-				dockerls = true,
-				docker_compose_language_service = true,
-				lua_ls = true,
 				jdtls = true,
-				-- managed through rustacean.nvim
-				-- rust_analyzer = true,
-				-- probably want to disable formatting for this lang server
-				ts_ls = true,
 				jsonls = {
 					settings = {
 						json = {
@@ -77,6 +72,11 @@ return {
 						},
 					},
 				},
+				lua_ls = true,
+				-- managed through rustacean.nvim
+				-- rust_analyzer = true,
+				-- probably want to disable formatting for this lang server
+				ts_ls = true,
 				yamlls = {
 					settings = {
 						yaml = {
