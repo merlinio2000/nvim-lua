@@ -76,7 +76,7 @@ return {
 				-- managed through rustacean.nvim
 				-- rust_analyzer = true,
 				-- probably want to disable formatting for this lang server
-				ts_ls = true,
+				vtsls = true,
 				yamlls = {
 					settings = {
 						yaml = {
