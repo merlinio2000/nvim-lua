@@ -13,7 +13,6 @@ return {
 			desc = "Format Buffer",
 		},
 	},
-	---@class ConformOpts
 	opts = {
 		format = {
 			timeout_ms = 3000,
@@ -21,7 +20,6 @@ return {
 			quiet = false, -- not recommended to change
 		},
 		format_on_save = { timeout_ms = 500, lsp_fallback = true },
-		---@type table<string, conform.FormatterUnit[]>
 		formatters_by_ft = {
 			rust = { "rustfmt" },
 			lua = { "stylua" },
@@ -35,6 +33,7 @@ return {
 			html = { "prettierd" },
 			css = { "prettierd" },
 			python = { "ruff_format" },
+			go = { "golangci-lint" },
 		},
 	},
 	-- init = function()
