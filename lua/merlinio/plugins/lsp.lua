@@ -46,7 +46,17 @@ return {
 				basedpyright = true,
 				bashls = true,
 				clangd = true,
-				dockerls = true,
+				dockerls = {
+					settings = {
+						docker = {
+							languageserver = {
+								formatter = {
+									ignoreMultilineInstructions = true,
+								},
+							},
+						},
+					},
+				},
 				docker_compose_language_service = true,
 				gopls = {
 					settings = {
