@@ -45,21 +45,5 @@ return {
 		"kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
-		---@type user_options
-		opts = {
-			keymaps = {
-				insert = false,
-				insert_line = false,
-				normal = "ys",
-				normal_cur = "yss",
-				normal_line = false,
-				normal_cur_line = false,
-				visual = "S",
-				visual_line = false,
-				delete = "ds",
-				change = "cs",
-				change_line = false,
-			},
-		},
 	},
 }
