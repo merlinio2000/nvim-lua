@@ -1,8 +1,13 @@
+---@module 'lazy'
+---@type LazySpec
 return {
+	---@type LazySpec
 	{
 
 		"folke/lazydev.nvim",
 		ft = "lua", -- only load on lua files
+		---@module 'lazydev'
+		---@type lazydev.Config
 		opts = {
 			library = {
 				-- auto-load types and stuff without require(...) from lazy.nvim
@@ -10,6 +15,7 @@ return {
 			},
 		},
 	},
+	---@type LazySpec
 	{
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -18,34 +24,15 @@ return {
 
 			-- Schema information
 			"b0o/SchemaStore.nvim",
+
+			"saghen/blink.cmp",
 		},
 		config = function()
-			vim.lsp.inlay_hint.enable()
-
-			vim.diagnostic.config({
-				virtual_lines = true,
-			})
-
-			local capabilities = nil
-			if pcall(require, "cmp_nvim_lsp") then
-				capabilities = require("cmp_nvim_lsp").default_capabilities()
-			end
-
-			require("mason").setup()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"lua_ls",
-					"bashls",
-					"jsonls",
-					"yamlls",
-				},
-			})
-
 			local servers = {
-				asm_lsp = true,
-				basedpyright = true,
-				bashls = true,
-				clangd = true,
+				asm_lsp = {},
+				basedpyright = {},
+				bashls = {},
+				clangd = {},
 				dockerls = {
 					settings = {
 						docker = {
@@ -57,7 +44,7 @@ return {
 						},
 					},
 				},
-				docker_compose_language_service = true,
+				docker_compose_language_service = {},
 				gopls = {
 					settings = {
 						gopls = {
@@ -73,7 +60,7 @@ return {
 						},
 					},
 				},
-				jdtls = true,
+				jdtls = {},
 				jsonls = {
 					settings = {
 						json = {
@@ -82,11 +69,11 @@ return {
 						},
 					},
 				},
-				lua_ls = true,
+				lua_ls = {},
 				-- managed through rustacean.nvim
-				-- rust_analyzer = true,
+				-- rust_analyzer = {},
 				-- probably want to disable formatting for this lang server
-				vtsls = true,
+				vtsls = {},
 				yamlls = {
 					settings = {
 						yaml = {
@@ -99,47 +86,61 @@ return {
 					},
 				},
 			}
+			vim.lsp.inlay_hint.enable()
+
+			vim.diagnostic.config({
+				virtual_lines = true,
+			})
+
+			require("mason").setup()
+			require("mason-lspconfig").setup({
+				ensure_installed = {
+					"lua_ls",
+					"bashls",
+					"jsonls",
+					"yamlls",
+				},
+			})
 
 			for name, config in pairs(servers) do
-				if config then
-					if config == true then
-						config = {}
-					end
-					config = vim.tbl_deep_extend("force", {
-						capabilities = capabilities,
-					}, config)
-
-					vim.lsp.config(name, config)
-					vim.lsp.enable(name)
-				end
+				config.capabilities = require("blink.cmp").get_lsp_capabilities(
+					config.capabilities
+				)
+				vim.lsp.config(name, config)
+				vim.lsp.enable(name)
 			end
 
 			vim.api.nvim_create_autocmd("LspAttach", {
 				callback = function()
 					-- TODO: look at this
 					vim.opt_local.omnifunc = "v:lua.vim.lsp.omnifunc"
-					local opts = { buffer = 0 }
+					local key_opts = { buffer = 0 }
 
-					opts["desc"] = "Goto Definition"
-					vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-					opts["desc"] = "Goto Declaration"
-					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-					opts["desc"] = "Goto Type"
-					vim.keymap.set("n", "gT", vim.lsp.buf.type_definition, opts)
+					key_opts["desc"] = "Goto Definition"
+					vim.keymap.set("n", "gd", vim.lsp.buf.definition, key_opts)
+					key_opts["desc"] = "Goto Declaration"
+					vim.keymap.set("n", "gD", vim.lsp.buf.declaration, key_opts)
+					key_opts["desc"] = "Goto Type"
+					vim.keymap.set(
+						"n",
+						"gT",
+						vim.lsp.buf.type_definition,
+						key_opts
+					)
 
-					opts["desc"] = "Workspace Symbols"
+					key_opts["desc"] = "Workspace Symbols"
 					vim.keymap.set(
 						"n",
 						"<leader>cw",
 						vim.lsp.buf.workspace_symbol,
-						opts
+						key_opts
 					)
-					opts["desc"] = "Diagnostics (float)"
+					key_opts["desc"] = "Diagnostics (float)"
 					vim.keymap.set(
 						"n",
 						"<leader>cd",
 						vim.diagnostic.open_float,
-						opts
+						key_opts
 					)
 				end,
 			})
@@ -147,7 +148,7 @@ return {
 	},
 	{
 		"mrcjkb/rustaceanvim",
-		version = "^6",
+		version = "^9",
 		lazy = false, -- This plugin is already lazy
 	},
 	{
