@@ -1,69 +1,53 @@
 return {
-	"saghen/blink.cmp",
-	-- optional: provides snippets for the snippet source
-	dependencies = {
-		{
-			"L3MON4D3/LuaSnip",
-			version = "v2.*",
-			build = "make install_jsregexp",
-			dependencies = { "rafamadriz/friendly-snippets" },
-		},
-	},
+    "saghen/blink.cmp",
+    -- optional: provides snippets for the snippet source
+    dependencies = {
+        {
+            "rafamadriz/friendly-snippets"
+        },
+    },
 
-	-- use a release tag to download pre-built binaries
-	version = "1.*",
-	build = "cargo build --release",
-	-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-	-- build = 'cargo build --release',
-	-- If you use nix, you can build from source using latest nightly rust with:
-	-- build = 'nix run .#build-plugin',
+    version = "1.*",
+    build = "if [ command -v nix  >/dev/null ]; then nix run .#build-plugin; else cargo build --release; fi",
 
-	---@module 'blink.cmp'
-	---@type blink.cmp.Config
-	opts = {
-		keymap = { preset = "default" },
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = {
+        keymap = { preset = "default" },
 
-		appearance = {
-			-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
-			-- Adjusts spacing to ensure icons are aligned
-			nerd_font_variant = "mono",
-		},
+        appearance = {
+            -- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+            -- Adjusts spacing to ensure icons are aligned
+            nerd_font_variant = "mono",
+        },
 
-		completion = { documentation = { auto_show = false } },
+        completion = { documentation = { auto_show = false }, ghost_text = { enabled = true } },
 
-		snippets = { preset = "luasnip" },
 
-		-- Default list of enabled providers defined so that you can extend it
-		-- elsewhere in your config, without redefining it, due to `opts_extend`
-		sources = {
-			default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-			per_filetype = {
-				sql = { "dadbod", "path", "snippets", "buffer" },
-			},
+        sources = {
+            default = { "lazydev", "lsp", "path", "snippets", "buffer" },
+            per_filetype = {
+                sql = { "dadbod", "path", "snippets", "buffer" },
+            },
 
-			providers = {
-				lazydev = {
-					name = "LazyDev",
-					module = "lazydev.integrations.blink",
-					-- make lazydev completions top priority (see `:h blink.cmp`)
-					score_offset = 100,
-				},
+            providers = {
+                lazydev = {
+                    name = "LazyDev",
+                    module = "lazydev.integrations.blink",
+                    score_offset = 100,
+                },
 
-				dadbod = {
-					name = "Dadbod",
-					module = "vim_dadbod_completion.blink",
-				},
-			},
-		},
+                dadbod = {
+                    name = "Dadbod",
+                    module = "vim_dadbod_completion.blink",
+                },
 
-		-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
-		-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
-		-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
-		--
-		-- See the fuzzy documentation for more information
-		fuzzy = {
-			implementation = "prefer_rust_with_warning",
-			prebuilt_binaries = { download = false },
-		},
-	},
+            },
+        },
+
+        fuzzy = {
+            implementation = "prefer_rust_with_warning",
+            prebuilt_binaries = { download = false },
+        },
+    },
 }
