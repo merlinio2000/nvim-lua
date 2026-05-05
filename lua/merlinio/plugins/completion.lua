@@ -8,7 +8,9 @@ return {
     },
 
     version = "1.*",
-    build = "if [ command -v nix  >/dev/null ]; then nix run .#build-plugin; else cargo build --release; fi",
+    -- TODO: needs unstable nixos features
+    -- build = "if command -v nix  >/dev/null ; then nix run .#build-plugin; else cargo build --release; fi",
+    build = "cargo build --release",
 
     ---@module 'blink.cmp'
     ---@type blink.cmp.Config
