@@ -1,6 +1,8 @@
+---@module "lazy"
+---@type LazyConfig
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
+	version = "^0.2.1",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{
@@ -24,8 +26,11 @@ return {
 			defaults = require("telescope.themes").get_ivy({
 				wrap_results = true,
 				mappings = {
-					i = { ["<c-x>"] = open_with_trouble },
-					n = { ["<c-x>"] = open_with_trouble },
+					i = {
+						["<C-x>"] = open_with_trouble,
+						["<C-f>"] = "to_fuzzy_refine",
+					},
+					n = { ["<C-x>"] = open_with_trouble },
 				},
 				preview = { filesize_limit = 5 },
 			}),
@@ -35,10 +40,8 @@ return {
 					mappings = {
 						i = {
 							["<C-i>"] = lga_actions.quote_prompt({
-								postfix = " --iglob ",
+								postfix = " -u",
 							}),
-							-- freeze the current list and start a fuzzy search in the frozen list
-							["<C-space>"] = lga_actions.to_fuzzy_refine,
 						},
 					},
 					-- ... also accepts theme settings, for example:
