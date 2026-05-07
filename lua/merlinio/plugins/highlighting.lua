@@ -1,44 +1,45 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
+		lazy = false,
 		build = ":TSUpdate",
-		event = { "BufReadPost", "BufNewFile" },
-		config = function()
-			require("nvim-treesitter.configs").setup({
-				ensure_installed = {
-					"vimdoc",
-					"vim",
-					"regex",
-					"lua",
-					"c",
-					"cpp",
-					"rust",
-					"python",
-					"javascript",
-					"typescript",
-					"markdown",
-					"markdown_inline",
-				},
-				sync_install = false,
-				highlight = {
-					enable = true,
-					disable = function(lang, buf)
-						if lang == "latex" then
-							return true
-						end
-						local max_filesize = 1024 * 1024 -- 1 MiB
-						local ok, stats = pcall(
-							vim.loop.fs_stat,
-							vim.api.nvim_buf_get_name(buf)
-						)
-						if ok and stats and stats.size > max_filesize then
-							return true
-						end
-					end,
-				},
-				indent = { enable = true },
-			})
-		end,
+		---@module "nvim-treesitter"
+		---@type TSConfig
+		config = {
+			modules = {},
+			auto_install = false,
+			ignore_install = {},
+			ensure_installed = {
+				"vimdoc",
+				"vim",
+				"regex",
+				"lua",
+				"c",
+				"cpp",
+				"rust",
+				"python",
+				"javascript",
+				"typescript",
+				"markdown",
+				"markdown_inline",
+			},
+			sync_install = false,
+			highlight = {
+				enable = true,
+				disable = function(lang, buf)
+					if lang == "latex" then
+						return true
+					end
+					local max_filesize = 1024 * 1024 -- 1 MiB
+					local ok, stats =
+						pcall(vim.loop.fs_stat, vim.api.nvim_buf_get_name(buf))
+					if ok and stats and stats.size > max_filesize then
+						return true
+					end
+				end,
+			},
+			indent = { enable = true },
+		},
 	},
 	{
 		"HiPhish/rainbow-delimiters.nvim",
