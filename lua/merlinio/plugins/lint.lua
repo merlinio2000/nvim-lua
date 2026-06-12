@@ -1,13 +1,15 @@
+local js_config = { "biomejs", "eslint_d" }
+
 return {
 	"mfussenegger/nvim-lint",
 	event = { "BufReadPre", "BufNewFile" },
 	config = function()
 		vim.env.ESLINT_D_PPID = vim.fn.getpid()
 		require("lint").linters_by_ft = {
-			javascript = { "eslint_d" },
-			typescript = { "eslint_d" },
-			javascriptreact = { "eslint_d" },
-			typescriptreact = { "eslint_d" },
+			javascript = js_config,
+			typescript = js_config,
+			javascriptreact = js_config,
+			typescriptreact = js_config,
 			shell = { "shellcheck" },
 			python = { "ruff" },
 			go = { "golangcilint" },

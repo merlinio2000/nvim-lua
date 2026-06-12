@@ -1,3 +1,7 @@
+local js_config = { "biome", "prettierd", stop_after_first = true }
+
+---@module 'lazy'
+---@type LazySpec
 return {
 	"stevearc/conform.nvim",
 	dependencies = { "mason.nvim" },
@@ -24,14 +28,14 @@ return {
 			rust = { "rustfmt" },
 			lua = { "stylua" },
 			sh = { "shfmt" },
-			javascript = { "prettierd" },
-			typescript = { "prettierd" },
-			javascriptreact = { "prettierd" },
-			typescriptreact = { "prettierd" },
-			json = { "prettierd" },
-			jsonc = { "prettierd" }, -- json with comments like tsconfig
-			html = { "prettierd" },
-			css = { "prettierd" },
+			javascript = js_config,
+			typescript = js_config,
+			javascriptreact = js_config,
+			typescriptreact = js_config,
+			json = js_config,
+			jsonc = js_config, -- json with comments like tsconfig
+			html = js_config,
+			css = js_config,
 			python = { "ruff_format" },
 			go = { "golangci-lint" },
 		},
